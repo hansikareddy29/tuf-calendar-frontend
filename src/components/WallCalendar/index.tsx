@@ -168,33 +168,33 @@ export default function WallCalendar() {
       />
 
       {/* ── Pendulum pivot at nail top center ── */}
-      <div
-        style={{
-          transformOrigin: 'top center',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          paddingTop: '20px',
-          marginTop: '-15px', // Brought down so it's visible at the top
-        }}
-      >
-        {/* Clothespin hanger */}
-        <WallHanger />
-
-        {/* ── Card stack ── */}
+      {/* ── Main Assembly Container ── */}
+      <div className="relative flex flex-col items-center justify-center min-h-screen w-full px-4 overflow-y-auto pt-40 pb-20">
+        
+        {/* ── Card stack (The primary element centered by Flexbox) ── */}
         <div
-          className="relative"
+          className="relative grid"
           style={{
-            marginTop: 'calc(-42px * (min(800px, 94vw) / 800))',
+            width: 'min(800px, 94vw)',
             paddingBottom: '14px',
             perspective: '1500px',
-            width: 'auto',
+            zIndex: 10,
           }}
         >
-          <div className="relative" style={{ width: 'min(800px, 94vw)', minHeight: '620px' }}>
+          {/* WallHanger (Detached from flow, attached to card top) */}
+          <div 
+            className="absolute left-1/2 -translate-x-1/2 pointer-events-none" 
+            style={{ 
+              width: '100%', 
+              top: 'calc(min(800px, 94vw) * -126 / 800)', // Align clips' jaws securely with card top
+              zIndex: 100 
+            }}
+          >
+            <WallHanger />
+          </div>
             <AnimatePresence initial={false} custom={direction}>
               {/* Wrapped Stacked pages for the main landscape card */}
-              <div key={monthKey + "_stack"} className="absolute inset-0">
+              <div key={monthKey + "_stack"} className="absolute inset-0 z-0">
                 {STACKED_PAGES.map((pg, i) => (
                   <div
                     key={i}
@@ -221,14 +221,15 @@ export default function WallCalendar() {
                 animate="center"
                 exit="exit"
                 style={{
+                  gridArea: '1 / 1',
                   width: '100%',
-                  position: 'absolute',
-                  top: 0,
+                  position: 'relative',
                   borderRadius: '10px',
                   overflow: 'hidden',
                   backgroundColor: cardBg,
                   backfaceVisibility: 'hidden',
                   boxShadow: '0 20px 55px rgba(0,0,0,0.20), 0 6px 20px rgba(0,0,0,0.10)',
+                  zIndex: 10,
                 }}
               >
                 {/* ── Top strip ── */}
@@ -442,8 +443,6 @@ export default function WallCalendar() {
               zIndex: 0,
             }} />
           </div>
-
-        </div>
       </div>
     </div>
   );
