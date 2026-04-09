@@ -227,24 +227,45 @@ export default function DateCell({
           if (items.length === 0) return null;
           const displayItems = items.slice(0, 3);
           const residue = items.length - 3;
-          const symbol = type === 'single' ? '●' : type === 'start' ? '▶' : '◀';
+          
+          const getSymbol = (type: 'start' | 'end' | 'single') => {
+            if (type === 'start') {
+              return (
+                <svg width="6" height="8" viewBox="0 0 6 8" fill="currentColor" style={{ display: 'block' }}>
+                  <path d="M0 0 L6 4 L0 8 Z" />
+                </svg>
+              );
+            }
+            if (type === 'end') {
+              return (
+                <svg width="6" height="8" viewBox="0 0 6 8" fill="currentColor" style={{ display: 'block' }}>
+                  <path d="M6 0 L0 4 L6 8 Z" />
+                </svg>
+              );
+            }
+            return (
+              <svg width="6" height="6" viewBox="0 0 6 6" fill="currentColor" style={{ display: 'block' }}>
+                <circle cx="3" cy="3" r="3" />
+              </svg>
+            );
+          };
 
           return (
-            <div className={`flex ${type === 'single' ? 'flex-row' : 'flex-col'} items-center gap-[1px]`}>
+            <div className={`flex ${type === 'single' ? 'flex-row' : 'flex-col'} items-center gap-[2px]`}>
               {displayItems.map(r => {
                 const isSelected = r.id === selectedRangeId;
                 return (
                   <div
                     key={r.id}
-                    className={`transition-all duration-200 ${isSelected ? 'scale-125 brightness-125 z-10' : 'opacity-90'}`}
-                    style={{ color: r.color, fontSize: '10px', lineHeight: 1 }}
+                    className={`flex items-center justify-center transition-all duration-200 ${isSelected ? 'scale-125 brightness-125 z-10' : 'opacity-90'}`}
+                    style={{ color: r.color }}
                   >
-                    {symbol}
+                    {getSymbol(type)}
                   </div>
                 );
               })}
               {residue > 0 && (
-                <span className="text-[6px] font-bold text-black-900 leading-none">+{residue}</span>
+                <span className="text-[6px] font-bold text-slate-500 leading-none">+{residue}</span>
               )}
             </div>
           );
