@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+/* ---- CSS Variables / Design Tokens ---- */
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-outfit: 'Outfit', sans-serif;
+  --cal-bg: #f3f4f6;
+  --cal-surface: #ffffff;
+  --cal-blue: #1b9bde;
+}
+
+/* ---- Base ---- */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter);
+  margin: 0;
+}
+
+/* ---- Font utilities ---- */
+.font-inter {
+  font-family: var(--font-inter);
+}
+
+.font-outfit {
+  font-family: var(--font-outfit);
+}
+
+/* ---- Smooth theme transition ---- */
+html, body, * {
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.15s ease;
+}
+
+/* Prevent transition on initial load for interactive elements */
+button, textarea, input {
+  transition: background-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease;
+}
+
+/* ---- Scrollbar styling ---- */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.custom-scrollbar-white::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar-white::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar-white::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 10px;
+}
+.custom-scrollbar-white::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* ---- Calendar-specific ---- */
+.cal-range-band {
+  background: var(--cal-blue, #1b9bde);
+  opacity: 0.12;
+}
+
+/* ---- Textarea reset ---- */
+textarea {
+  resize: none;
+  font-family: var(--font-inter);
+}
+
+textarea:focus {
+  outline: none;
+  box-shadow: none;
+}
