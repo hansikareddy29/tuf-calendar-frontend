@@ -1,4 +1,4 @@
-# 🗓️ TUF Wall Calendar — Interactive Date Range Picker
+# 🗓️ 3D Wall Calendar — Interactive Date Range Picker
 
 A beautifully crafted **interactive digital wall calendar** built with  
 ⚡ **Next.js 16 + TypeScript + Tailwind CSS v4**
