@@ -21,13 +21,9 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: 'TUF Wall Calendar — Interactive Date Range Picker',
-  description:
-    'A polished, interactive wall calendar component with date range selection, notes, and dark mode. Built with Next.js and TypeScript.',
-  keywords: ['calendar', 'date picker', 'wall calendar', 'date range', 'react', 'nextjs'],
+  title: '3D-Wall-Calendar',
   openGraph: {
-    title: 'TUF Wall Calendar',
-    description: 'Interactive wall calendar with date range selection and notes',
+    title: '3D Wall Calendar',
     type: 'website',
   },
 };
